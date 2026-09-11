@@ -1,0 +1,9 @@
+name: web-tinyfish
+version: 0.2.0
+description: "TinyFish AI Web Search + Fetch — pip-installable plugin. Calls TinyFish directly; rate limits enforced server-side (HTTP 429 / RATE_LIMIT_EXCEEDED). Requires TINYFISH_API_KEY from https://agent.tinyfish.ai/api-keys."
+author: Jasnoor Gill <jasnoor.gill@antler.co>
+license: MIT
+homepage: https://github.com/jasnoorgill/tinyfish-hermes-plugin
+kind: backend
+provides_web_providers:
+  - tinyfish

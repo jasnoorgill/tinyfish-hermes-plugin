@@ -1,0 +1,58 @@
+[build-system]
+requires = ["setuptools>=68,<81", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tinyfish-hermes-plugin"
+version = "0.2.0"
+description = "TinyFish AI web search + fetch provider for Hermes Agent (standalone plugin)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Jasnoor Gill", email = "jasnoor.gill@antler.co" }]
+keywords = ["hermes-agent", "hermes", "tinyfish", "web-search", "ai-agent", "plugin"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Framework :: Hermes Agent :: Plugin",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Internet :: WWW/HTTP :: Indexing/Search",
+]
+dependencies = [
+    "httpx>=0.27,<1",
+    # Runtime requires Hermes Agent to be installed in the same environment.
+    # We do NOT pin a version because Hermes's plugin surface is internal
+    # (plugins.web._common, agent.web_search_provider). Pin in your own env
+    # if you need strict reproducibility.
+]
+
+[project.optional-dependencies]
+dev = [
+    "build>=1.0,<2",
+    "twine>=5,<6",
+    "pytest>=8,<9",
+]
+
+# Hermes Agent discovers pip-installed plugins via the entry-point group
+# below. The plugin loader (hermes_cli/plugins.py:1412) iterates this group
+# at startup and calls each entry-point's `register(ctx)`.
+[project.entry-points."hermes_agent.plugins"]
+tinyfish_web_provider = "tinyfish_hermes_plugin:register"
+
+[project.urls]
+Homepage = "https://github.com/jasnoorgill/tinyfish-hermes-plugin"
+Issues = "https://github.com/jasnoorgill/tinyfish-hermes-plugin/issues"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.package-data]
+tinyfish_hermes_plugin = ["plugin.yaml"]
+
+[tool.setuptools.packages.find]
+include = ["tinyfish_hermes_plugin*"]
+exclude = ["tests*"]

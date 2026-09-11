@@ -1,5 +1,5 @@
 [build-system]
-requires = ["setuptools>=68,<81", "wheel"]
+requires = ["setuptools>=68,<78", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
@@ -13,7 +13,6 @@ authors = [{ name = "Jasnoor Gill", email = "jasnoor.gill@antler.co" }]
 keywords = ["hermes-agent", "hermes", "tinyfish", "web-search", "ai-agent", "plugin"]
 classifiers = [
     "Development Status :: 4 - Beta",
-    "Framework :: Hermes Agent :: Plugin",
     "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
